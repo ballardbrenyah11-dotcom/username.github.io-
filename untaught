@@ -1,0 +1,716 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1C1208;
+  --paper:#F7F1E8;
+  --rust:#B03A1A;
+  --rust-mid:#C94A28;
+  --rust-soft:#F2E0D4;
+  --ochre:#C8861A;
+  --ochre-soft:#F5EDD6;
+  --sage:#2A4A35;
+  --sage-soft:#DCE9DF;
+  --sand:#E8D9B8;
+  --sand-dark:#C4AF88;
+  --mid:#6B5A42;
+  --rule:rgba(28,18,8,0.12);
+  --card:#FFFDF8;
+}
+.u-root{font-family:'Manrope',sans-serif;background:var(--paper);color:var(--ink)}
+
+/* PATTERN STRIP - diamond chevron */
+.pattern-strip{
+  height:28px;overflow:hidden;
+  background:var(--rust);
+  position:relative;
+}
+.pattern-strip svg{display:block;width:100%;height:100%}
+
+/* NAV */
+.u-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 2rem;
+  border-bottom:2px solid var(--sand-dark);
+  background:var(--ink);
+}
+.u-wordmark{
+  font-family:'Bebas Neue',sans-serif;font-size:1.6rem;
+  letter-spacing:0.1em;color:var(--paper);line-height:1;
+}
+.u-wordmark span{color:var(--ochre)}
+.u-navlinks{display:flex;gap:2rem;list-style:none}
+.u-navlinks a{
+  font-size:11px;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--sand);
+  text-decoration:none;cursor:pointer;transition:color .2s;
+}
+.u-navlinks a:hover{color:var(--ochre)}
+
+/* HERO */
+.u-hero{
+  position:relative;overflow:hidden;
+  background:var(--ink);
+  padding:4rem 2rem 3.5rem;
+  border-bottom:3px solid var(--rust);
+}
+.hero-geo{
+  position:absolute;right:0;top:0;bottom:0;
+  width:42%;opacity:.12;
+  pointer-events:none;
+}
+.u-hero-inner{
+  display:grid;grid-template-columns:1fr 300px;
+  gap:3rem;align-items:end;position:relative;z-index:1;
+}
+.u-kicker{
+  font-size:11px;font-weight:600;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--ochre);
+  margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:10px;
+}
+.u-kicker::before{content:'';display:block;width:28px;height:2px;background:var(--ochre)}
+.u-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,8vw,6.5rem);
+  letter-spacing:0.04em;line-height:.92;
+  color:var(--paper);margin-bottom:1.5rem;
+}
+.u-h1 .sub{
+  display:block;
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-size:clamp(1.3rem,3vw,2.2rem);
+  letter-spacing:0;color:var(--ochre);
+  line-height:1.25;margin-top:0.3rem;
+}
+.u-hero-body{
+  font-size:14px;line-height:1.78;
+  color:rgba(247,241,232,0.7);
+  font-weight:300;max-width:500px;margin-bottom:2rem;
+}
+.u-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:.75rem 1.75rem;
+  background:var(--rust);color:var(--paper);
+  font-size:12px;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;border:none;cursor:pointer;
+  border-radius:2px;transition:background .2s;
+}
+.u-cta:hover{background:#8E2E12}
+.u-hero-stats{
+  border-left:2px solid rgba(247,241,232,0.15);
+  padding-left:2rem;
+}
+.u-stat-stack{display:flex;flex-direction:column;gap:1.5rem}
+.u-stat-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.8rem;letter-spacing:0.05em;
+  color:var(--ochre);line-height:1;margin-bottom:4px;
+}
+.u-stat-desc{font-size:11px;color:rgba(247,241,232,0.55);line-height:1.55;font-weight:400}
+.u-stat-div{height:1px;background:rgba(247,241,232,0.1)}
+
+/* BAND */
+.u-band{
+  background:var(--rust);padding:1.25rem 2rem;
+  display:flex;align-items:center;gap:1.5rem;
+  border-bottom:2px solid var(--sand-dark);
+}
+.u-band-label{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.05rem;letter-spacing:0.1em;
+  color:var(--paper);white-space:nowrap;
+}
+.u-band-text{font-size:13px;color:rgba(255,255,255,.8);line-height:1.55;font-weight:300}
+.u-band-text strong{color:#fff;font-weight:500}
+
+/* DIVIDER PATTERN */
+.div-pattern{
+  height:20px;overflow:hidden;
+  background:var(--sand);
+}
+.div-pattern svg{display:block;width:100%;height:100%}
+
+/* SECTION LABEL */
+.u-sec{
+  padding:2rem 2rem 0;
+  display:flex;align-items:center;gap:1rem;
+}
+.u-sec-text{
+  font-size:11px;font-weight:700;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--mid);white-space:nowrap;
+}
+.u-sec::after{content:'';flex:1;height:1px;background:var(--sand-dark)}
+
+/* TIMELINE */
+.u-timeline{padding:1.5rem 2rem;display:flex;flex-direction:column;gap:10px;border-bottom:2px solid var(--sand)}
+
+.u-era{
+  border:1.5px solid var(--sand-dark);border-radius:3px;
+  overflow:hidden;background:var(--card);
+}
+.u-era-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.25rem;cursor:pointer;user-select:none;
+  background:var(--ochre-soft);border-bottom:1.5px solid var(--sand-dark);
+  transition:background .15s;
+}
+.u-era-head:hover{background:#EDD9A8}
+.u-era-left{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.u-era-period{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem;letter-spacing:0.06em;
+  color:var(--rust);min-width:80px;
+}
+.u-era-title{font-size:13px;font-weight:600;color:var(--ink)}
+.u-era-tag{
+  font-size:10px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-left:6px;
+}
+.tag-myth{background:#F0DDD5;color:#7A2E18}
+.tag-gap{background:var(--sage-soft);color:#1C3A26}
+.tag-min{background:var(--ochre-soft);color:#7A4F0A}
+.u-era-arrow{font-size:14px;color:var(--rust);transition:transform .25s}
+.u-era-arrow.open{transform:rotate(180deg)}
+
+.u-era-body{display:none;grid-template-columns:1fr 1fr}
+.u-era-body.vis{display:grid}
+.u-col{padding:1.25rem 1.5rem}
+.u-col-myth{
+  background:#FDFAF6;
+  border-right:1.5px solid var(--sand);
+  border-top:none;
+}
+.u-col-reality{background:#F9FCF9}
+.u-col-badge{
+  font-size:10px;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;padding:3px 9px;border-radius:2px;
+  display:inline-block;margin-bottom:10px;
+}
+.badge-myth{background:#F0DDD5;color:#7A2E18}
+.badge-real{background:var(--sage-soft);color:#1C3A26}
+.u-col p{font-size:13px;line-height:1.72;color:var(--ink);font-weight:300}
+.u-col p strong{font-weight:600}
+.u-col p em{font-style:italic;color:var(--mid)}
+
+/* PULL QUOTE */
+.u-pq{
+  padding:3rem 2rem;
+  background:var(--sage);
+  border-top:3px solid var(--sand-dark);
+  border-bottom:3px solid var(--sand-dark);
+  position:relative;overflow:hidden;
+}
+.pq-geo{
+  position:absolute;right:0;top:0;bottom:0;width:200px;
+  opacity:.08;pointer-events:none;
+}
+.u-pq-inner{display:flex;gap:2rem;align-items:flex-start;position:relative;z-index:1}
+.u-pq-mark{
+  font-family:'Instrument Serif',serif;
+  font-size:6rem;line-height:.65;
+  color:var(--sand);opacity:.5;flex-shrink:0;margin-top:10px;
+}
+.u-pq-text{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(1rem,2.2vw,1.35rem);
+  font-style:italic;line-height:1.6;color:var(--paper);
+}
+.u-pq-attr{
+  font-size:11px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--sand);margin-top:1rem;opacity:.7;
+}
+
+/* MYTHS GRID */
+.u-myths-section{padding:2rem}
+.u-myths-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1rem;margin-top:1.5rem;
+}
+.u-myth-card{
+  padding:1.25rem;
+  border:1.5px solid var(--sand-dark);
+  border-radius:3px;background:var(--card);
+  position:relative;overflow:hidden;
+}
+.u-myth-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:var(--rust);
+}
+.u-myth-num{
+  font-family:'Bebas Neue',sans-serif;font-size:2.2rem;
+  letter-spacing:0.05em;color:var(--sand-dark);
+  line-height:1;margin-bottom:6px;
+}
+.u-myth-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.u-myth-body{font-size:12px;line-height:1.65;color:var(--mid);font-weight:300}
+
+/* TODAY */
+.u-today-section{padding:2rem}
+.u-today-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--sand-dark);
+  border:1.5px solid var(--sand-dark);border-radius:3px;
+  overflow:hidden;margin-top:1.5rem;
+}
+.u-today-cell{background:var(--card);padding:1.5rem}
+.u-today-head{
+  font-size:11px;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--sage);
+  margin-bottom:10px;display:flex;align-items:center;gap:8px;
+}
+.u-today-head::before{content:'';display:block;width:16px;height:2px;background:var(--sage)}
+.u-today-cell p{font-size:13px;line-height:1.7;color:var(--mid);font-weight:300}
+.u-today-cell p strong{font-weight:600;color:var(--ink)}
+
+/* SOURCES */
+.u-sources{padding:2rem;border-top:2px solid var(--sand)}
+.u-sources-list{margin-top:1rem;display:flex;flex-direction:column}
+.u-source{
+  display:flex;gap:1rem;align-items:baseline;
+  padding:.75rem 0;border-bottom:1px solid var(--sand);
+}
+.u-source:last-child{border-bottom:none}
+.u-source-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--rust);flex-shrink:0;margin-top:6px;
+}
+.u-source-text{font-size:13px;font-style:italic;color:var(--mid);font-weight:300;line-height:1.55}
+.u-source-text strong{font-style:normal;font-weight:500;color:var(--ink)}
+
+/* FOOTER */
+.u-footer{
+  background:var(--ink);
+  padding:1.75rem 2rem;
+  border-top:3px solid var(--rust);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.u-footer-brand{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.2rem;letter-spacing:0.1em;color:var(--paper);
+}
+.u-footer-brand span{color:var(--ochre)}
+.u-footer-note{font-size:11px;color:rgba(247,241,232,.45);font-weight:300;max-width:380px;line-height:1.5;text-align:right}
+
+@media(max-width:640px){
+  .u-hero-inner{grid-template-columns:1fr}
+  .u-hero-stats{border-left:none;border-top:1px solid rgba(247,241,232,.15);padding-left:0;padding-top:1.5rem}
+  .u-era-body.vis{grid-template-columns:1fr}
+  .u-col-myth{border-right:none;border-bottom:1.5px solid var(--sand)}
+  .u-myths-grid{grid-template-columns:1fr}
+  .u-today-grid{grid-template-columns:1fr}
+  .u-footer{flex-direction:column;gap:1rem}
+  .u-footer-note{text-align:center}
+  .hero-geo{display:none}
+}
+</style>
+
+<div class="u-root">
+
+<div class="pattern-strip">
+<svg viewBox="0 0 800 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="28" fill="#B03A1A"/>
+  <g fill="#F7F1E8" opacity="0.25">
+    <polygon points="0,14 7,0 14,14 7,28"/>
+    <polygon points="14,14 21,0 28,14 21,28"/>
+    <polygon points="28,14 35,0 42,14 35,28"/>
+    <polygon points="42,14 49,0 56,14 49,28"/>
+    <polygon points="56,14 63,0 70,14 63,28"/>
+    <polygon points="70,14 77,0 84,14 77,28"/>
+    <polygon points="84,14 91,0 98,14 91,28"/>
+    <polygon points="98,14 105,0 112,14 105,28"/>
+    <polygon points="112,14 119,0 126,14 119,28"/>
+    <polygon points="126,14 133,0 140,14 133,28"/>
+    <polygon points="140,14 147,0 154,14 147,28"/>
+    <polygon points="154,14 161,0 168,14 161,28"/>
+    <polygon points="168,14 175,0 182,14 175,28"/>
+    <polygon points="182,14 189,0 196,14 189,28"/>
+    <polygon points="196,14 203,0 210,14 203,28"/>
+    <polygon points="210,14 217,0 224,14 217,28"/>
+    <polygon points="224,14 231,0 238,14 231,28"/>
+    <polygon points="238,14 245,0 252,14 245,28"/>
+    <polygon points="252,14 259,0 266,14 259,28"/>
+    <polygon points="266,14 273,0 280,14 273,28"/>
+    <polygon points="280,14 287,0 294,14 287,28"/>
+    <polygon points="294,14 301,0 308,14 301,28"/>
+    <polygon points="308,14 315,0 322,14 315,28"/>
+    <polygon points="322,14 329,0 336,14 329,28"/>
+    <polygon points="336,14 343,0 350,14 343,28"/>
+    <polygon points="350,14 357,0 364,14 357,28"/>
+    <polygon points="364,14 371,0 378,14 371,28"/>
+    <polygon points="378,14 385,0 392,14 385,28"/>
+    <polygon points="392,14 399,0 406,14 399,28"/>
+    <polygon points="406,14 413,0 420,14 413,28"/>
+    <polygon points="420,14 427,0 434,14 427,28"/>
+    <polygon points="434,14 441,0 448,14 441,28"/>
+    <polygon points="448,14 455,0 462,14 455,28"/>
+    <polygon points="462,14 469,0 476,14 469,28"/>
+    <polygon points="476,14 483,0 490,14 483,28"/>
+    <polygon points="490,14 497,0 504,14 497,28"/>
+    <polygon points="504,14 511,0 518,14 511,28"/>
+    <polygon points="518,14 525,0 532,14 525,28"/>
+    <polygon points="532,14 539,0 546,14 539,28"/>
+    <polygon points="546,14 553,0 560,14 553,28"/>
+    <polygon points="560,14 567,0 574,14 567,28"/>
+    <polygon points="574,14 581,0 588,14 581,28"/>
+    <polygon points="588,14 595,0 602,14 595,28"/>
+    <polygon points="602,14 609,0 616,14 609,28"/>
+    <polygon points="616,14 623,0 630,14 623,28"/>
+    <polygon points="630,14 637,0 644,14 637,28"/>
+    <polygon points="644,14 651,0 658,14 651,28"/>
+    <polygon points="658,14 665,0 672,14 665,28"/>
+    <polygon points="672,14 679,0 686,14 679,28"/>
+    <polygon points="686,14 693,0 700,14 693,28"/>
+    <polygon points="700,14 707,0 714,14 707,28"/>
+    <polygon points="714,14 721,0 728,14 721,28"/>
+    <polygon points="728,14 735,0 742,14 735,28"/>
+    <polygon points="742,14 749,0 756,14 749,28"/>
+    <polygon points="756,14 763,0 770,14 763,28"/>
+    <polygon points="770,14 777,0 784,14 777,28"/>
+    <polygon points="784,14 791,0 798,14 791,28"/>
+  </g>
+</svg>
+</div>
+
+<nav class="u-nav">
+  <div class="u-wordmark">UN<span>TAUGHT</span></div>
+  <ul class="u-navlinks">
+    <li><a onclick="document.getElementById('tl').scrollIntoView({behavior:'smooth'})">Timeline</a></li>
+    <li><a onclick="document.getElementById('myths').scrollIntoView({behavior:'smooth'})">Myths</a></li>
+    <li><a onclick="document.getElementById('today').scrollIntoView({behavior:'smooth'})">Today</a></li>
+    <li><a onclick="document.getElementById('sources').scrollIntoView({behavior:'smooth'})">Sources</a></li>
+  </ul>
+</nav>
+
+<div class="u-hero">
+  <svg class="hero-geo" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <g fill="#F7F1E8">
+      <rect x="50" y="50" width="60" height="60" transform="rotate(45,80,80)"/>
+      <rect x="150" y="30" width="40" height="40" transform="rotate(45,170,50)"/>
+      <rect x="250" y="80" width="70" height="70" transform="rotate(45,285,115)"/>
+      <rect x="80" y="160" width="50" height="50" transform="rotate(45,105,185)"/>
+      <rect x="200" y="150" width="80" height="80" transform="rotate(45,240,190)"/>
+      <rect x="320" y="200" width="45" height="45" transform="rotate(45,342,222)"/>
+      <rect x="30" y="280" width="65" height="65" transform="rotate(45,62,312)"/>
+      <rect x="160" y="270" width="55" height="55" transform="rotate(45,187,297)"/>
+      <rect x="290" y="320" width="75" height="75" transform="rotate(45,327,357)"/>
+      <rect x="70" y="390" width="45" height="45" transform="rotate(45,92,412)"/>
+      <rect x="200" y="400" width="60" height="60" transform="rotate(45,230,430)"/>
+      <rect x="340" y="440" width="40" height="40" transform="rotate(45,360,460)"/>
+      <rect x="100" y="490" width="70" height="70" transform="rotate(45,135,525)"/>
+      <rect x="250" y="510" width="50" height="50" transform="rotate(45,275,535)"/>
+      <line x1="0" y1="100" x2="400" y2="100" stroke="#F7F1E8" stroke-width="1"/>
+      <line x1="0" y1="250" x2="400" y2="250" stroke="#F7F1E8" stroke-width="1"/>
+      <line x1="0" y1="400" x2="400" y2="400" stroke="#F7F1E8" stroke-width="1"/>
+      <line x1="0" y1="550" x2="400" y2="550" stroke="#F7F1E8" stroke-width="1"/>
+      <line x1="100" y1="0" x2="100" y2="600" stroke="#F7F1E8" stroke-width="1"/>
+      <line x1="250" y1="0" x2="250" y2="600" stroke="#F7F1E8" stroke-width="1"/>
+    </g>
+  </svg>
+
+  <div class="u-hero-inner">
+    <div>
+      <p class="u-kicker">A project on Native American history in American education</p>
+      <h1 class="u-h1">Untaught<span class="sub">The story America chose not to tell you</span></h1>
+      <p class="u-hero-body">You went through twelve years of American public school. You learned about World War II, the Civil War, and the Boston Tea Party. What you were never fully taught was the history of the people who lived on this land long before any of that — and what was done to them. That wasn't an accident.</p>
+      <button class="u-cta" onclick="document.getElementById('tl').scrollIntoView({behavior:'smooth'})">Start reading ↓</button>
+    </div>
+    <div class="u-hero-stats">
+      <div class="u-stat-stack">
+        <div><div class="u-stat-num">27</div><div class="u-stat-desc">states where K-12 curricula name zero Native American individuals</div></div>
+        <div class="u-stat-div"></div>
+        <div><div class="u-stat-num">87%</div><div class="u-stat-desc">of state history standards that stop teaching Native history at 1900</div></div>
+        <div class="u-stat-div"></div>
+        <div><div class="u-stat-num">1924</div><div class="u-stat-desc">the year Native Americans were finally granted U.S. citizenship — most students don't know this</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="u-band">
+  <div class="u-band-label">Sound familiar?</div>
+  <div class="u-band-text"><strong>You probably learned about Thanksgiving, the Trail of Tears, maybe Pocahontas.</strong> What you weren't taught: what happened before, during, and long after — told from the perspective of the people it actually happened to.</div>
+</div>
+
+<div class="div-pattern">
+<svg viewBox="0 0 800 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="20" fill="#E8D9B8"/>
+  <g fill="#C4AF88">
+    <rect x="0" y="8" width="8" height="4"/><rect x="16" y="8" width="8" height="4"/><rect x="32" y="8" width="8" height="4"/>
+    <rect x="48" y="8" width="8" height="4"/><rect x="64" y="8" width="8" height="4"/><rect x="80" y="8" width="8" height="4"/>
+    <rect x="96" y="8" width="8" height="4"/><rect x="112" y="8" width="8" height="4"/><rect x="128" y="8" width="8" height="4"/>
+    <rect x="144" y="8" width="8" height="4"/><rect x="160" y="8" width="8" height="4"/><rect x="176" y="8" width="8" height="4"/>
+    <rect x="192" y="8" width="8" height="4"/><rect x="208" y="8" width="8" height="4"/><rect x="224" y="8" width="8" height="4"/>
+    <rect x="240" y="8" width="8" height="4"/><rect x="256" y="8" width="8" height="4"/><rect x="272" y="8" width="8" height="4"/>
+    <rect x="288" y="8" width="8" height="4"/><rect x="304" y="8" width="8" height="4"/><rect x="320" y="8" width="8" height="4"/>
+    <rect x="336" y="8" width="8" height="4"/><rect x="352" y="8" width="8" height="4"/><rect x="368" y="8" width="8" height="4"/>
+    <rect x="384" y="8" width="8" height="4"/><rect x="400" y="8" width="8" height="4"/><rect x="416" y="8" width="8" height="4"/>
+    <rect x="432" y="8" width="8" height="4"/><rect x="448" y="8" width="8" height="4"/><rect x="464" y="8" width="8" height="4"/>
+    <rect x="480" y="8" width="8" height="4"/><rect x="496" y="8" width="8" height="4"/><rect x="512" y="8" width="8" height="4"/>
+    <rect x="528" y="8" width="8" height="4"/><rect x="544" y="8" width="8" height="4"/><rect x="560" y="8" width="8" height="4"/>
+    <rect x="576" y="8" width="8" height="4"/><rect x="592" y="8" width="8" height="4"/><rect x="608" y="8" width="8" height="4"/>
+    <rect x="624" y="8" width="8" height="4"/><rect x="640" y="8" width="8" height="4"/><rect x="656" y="8" width="8" height="4"/>
+    <rect x="672" y="8" width="8" height="4"/><rect x="688" y="8" width="8" height="4"/><rect x="704" y="8" width="8" height="4"/>
+    <rect x="720" y="8" width="8" height="4"/><rect x="736" y="8" width="8" height="4"/><rect x="752" y="8" width="8" height="4"/>
+    <rect x="768" y="8" width="8" height="4"/><rect x="784" y="8" width="8" height="4"/>
+  </g>
+</svg>
+</div>
+
+<div id="tl" class="u-sec"><span class="u-sec-text">The timeline — myth vs. record</span></div>
+
+<div class="u-timeline">
+
+  <div class="u-era">
+    <div class="u-era-head" onclick="tog(this)">
+      <div class="u-era-left">
+        <div class="u-era-period">Pre-1492</div>
+        <div class="u-era-title">Before European contact <span class="u-era-tag tag-gap">Skipped entirely</span></div>
+      </div>
+      <div class="u-era-arrow">▾</div>
+    </div>
+    <div class="u-era-body">
+      <div class="u-col u-col-myth"><span class="u-col-badge badge-myth">What you were taught</span><p>Vague mention of "Indians" on the land. No nations, no names, no governance. The textbook story begins when Europeans arrive.</p></div>
+      <div class="u-col u-col-reality"><span class="u-col-badge badge-real">What the record shows</span><p>Over <strong>500 distinct nations</strong> with sophisticated governments, trade networks, agriculture, and cities. The Haudenosaunee Confederacy's democratic structure directly influenced the U.S. Constitution. These were not peoples awaiting civilization — they <em>were</em> civilization.</p></div>
+    </div>
+  </div>
+
+  <div class="u-era">
+    <div class="u-era-head" onclick="tog(this)">
+      <div class="u-era-left">
+        <div class="u-era-period">1490s</div>
+        <div class="u-era-title">Columbus and "discovery" <span class="u-era-tag tag-myth">Actively distorted</span></div>
+      </div>
+      <div class="u-era-arrow">▾</div>
+    </div>
+    <div class="u-era-body">
+      <div class="u-col u-col-myth"><span class="u-col-badge badge-myth">What you were taught</span><p><em>"In 1492, Columbus sailed the ocean blue."</em> A brave explorer who discovered America. Columbus Day was a national celebration of his courage and vision.</p></div>
+      <div class="u-col u-col-reality"><span class="u-col-badge badge-real">What the record shows</span><p>Columbus never set foot in the continental United States. He initiated <strong>forced labor, mutilation, and genocide</strong> of the Taíno people. Norse explorer Leif Erikson reached the Americas centuries earlier. Tens of millions of people already lived here — there was nothing to "discover."</p></div>
+    </div>
+  </div>
+
+  <div class="u-era">
+    <div class="u-era-head" onclick="tog(this)">
+      <div class="u-era-left">
+        <div class="u-era-period">1620s</div>
+        <div class="u-era-title">Pilgrims and Thanksgiving <span class="u-era-tag tag-myth">Actively distorted</span></div>
+      </div>
+      <div class="u-era-arrow">▾</div>
+    </div>
+    <div class="u-era-body">
+      <div class="u-col u-col-myth"><span class="u-col-badge badge-myth">What you were taught</span><p>Students dressed as Pilgrims and Indians to share a peaceful harvest meal. A story of friendship, gratitude, and cooperation between two peoples starting fresh.</p></div>
+      <div class="u-col u-col-reality"><span class="u-col-badge badge-real">What the record shows</span><p>European disease had already killed up to <strong>90% of coastal New England's Indigenous population</strong> before the Pilgrims arrived. King Philip's War (1675–76) devastated northeastern nations within a generation. The land the Pilgrims "settled" had been emptied by epidemic.</p></div>
+    </div>
+  </div>
+
+  <div class="u-era">
+    <div class="u-era-head" onclick="tog(this)">
+      <div class="u-era-left">
+        <div class="u-era-period">1800s</div>
+        <div class="u-era-title">Manifest Destiny <span class="u-era-tag tag-myth">Actively distorted</span></div>
+      </div>
+      <div class="u-era-arrow">▾</div>
+    </div>
+    <div class="u-era-body">
+      <div class="u-col u-col-myth"><span class="u-col-badge badge-myth">What you were taught</span><p>A patriotic, God-given mission to expand the nation from sea to sea. Lessons focused on settler courage and the hardships <em>they</em> endured crossing the frontier.</p></div>
+      <div class="u-col u-col-reality"><span class="u-col-badge badge-real">What the record shows</span><p>An ideology of <strong>white supremacy and land seizure</strong>. It justified systematic displacement, starvation campaigns, and destruction of entire villages — actions meeting the modern legal definition of ethnic cleansing.</p></div>
+    </div>
+  </div>
+
+  <div class="u-era">
+    <div class="u-era-head" onclick="tog(this)">
+      <div class="u-era-left">
+        <div class="u-era-period">1830s</div>
+        <div class="u-era-title">Trail of Tears <span class="u-era-tag tag-min">Minimized</span></div>
+      </div>
+      <div class="u-era-arrow">▾</div>
+    </div>
+    <div class="u-era-body">
+      <div class="u-col u-col-myth"><span class="u-col-badge badge-myth">What you were taught</span><p>A "difficult decision" by Andrew Jackson to relocate Native tribes. Covered briefly and framed as regrettable — rarely as a moral atrocity or deliberate cruelty.</p></div>
+      <div class="u-col u-col-reality"><span class="u-col-badge badge-real">What the record shows</span><p>A <strong>deliberate federal act of ethnic cleansing</strong>. The Indian Removal Act displaced the Cherokee, Choctaw, Creek, Chickasaw, and Seminole nations. Thousands died on forced marches. The Cherokee called it <em>Nunna daul Tsuny</em> — "the trail where they cried."</p></div>
+    </div>
+  </div>
+
+  <div class="u-era">
+    <div class="u-era-head" onclick="tog(this)">
+      <div class="u-era-left">
+        <div class="u-era-period">1819–1978</div>
+        <div class="u-era-title">Federal Indian boarding schools <span class="u-era-tag tag-gap">Completely absent</span></div>
+      </div>
+      <div class="u-era-arrow">▾</div>
+    </div>
+    <div class="u-era-body">
+      <div class="u-col u-col-myth"><span class="u-col-badge badge-myth">What you were taught</span><p>Nothing. This 150-year chapter is absent from most K-12 curricula. Most students graduate without ever hearing about it.</p></div>
+      <div class="u-col u-col-reality"><span class="u-col-badge badge-real">What the record shows</span><p>The U.S. government forcibly removed Native children and sent them to <strong>417 documented boarding schools</strong> to eliminate Indigenous identity. Hair cut off. Names replaced. Languages forbidden. Official motto: <em>"Kill the Indian, save the man."</em> Intergenerational trauma continues today.</p></div>
+    </div>
+  </div>
+
+  <div class="u-era">
+    <div class="u-era-head" onclick="tog(this)">
+      <div class="u-era-left">
+        <div class="u-era-period">1900s+</div>
+        <div class="u-era-title">The 20th century and beyond <span class="u-era-tag tag-gap">Completely absent</span></div>
+      </div>
+      <div class="u-era-arrow">▾</div>
+    </div>
+    <div class="u-era-body">
+      <div class="u-col u-col-myth"><span class="u-col-badge badge-myth">What you were taught</span><p>Nothing. The textbook narrative ends in the 1890s — implying, without saying it, that Native peoples ceased to exist or ceased to matter.</p></div>
+      <div class="u-col u-col-reality"><span class="u-col-badge badge-real">What the record shows</span><p>The 20th century brought <strong>forced sterilizations</strong>, termination policies, and urban relocation programs. It also brought the American Indian Movement, Alcatraz, and the Self-Determination Act. Native Americans didn't receive citizenship until <strong>1924</strong> and voting rights were suppressed into the 1960s.</p></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="u-pq">
+  <svg class="pq-geo" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#F7F1E8">
+      <polygon points="100,20 120,60 80,60"/>
+      <polygon points="100,80 140,140 60,140"/>
+      <polygon points="100,160 130,200 70,200"/>
+      <polygon points="100,220 150,300 50,300"/>
+      <polygon points="100,320 125,360 75,360"/>
+      <line x1="100" y1="0" x2="100" y2="400" stroke="#F7F1E8" stroke-width="1"/>
+      <line x1="0" y1="100" x2="200" y2="100" stroke="#F7F1E8" stroke-width="0.5"/>
+      <line x1="0" y1="200" x2="200" y2="200" stroke="#F7F1E8" stroke-width="0.5"/>
+      <line x1="0" y1="300" x2="200" y2="300" stroke="#F7F1E8" stroke-width="0.5"/>
+    </g>
+  </svg>
+  <div class="u-pq-inner">
+    <div class="u-pq-mark">"</div>
+    <div>
+      <p class="u-pq-text">Invisibility may be Indian Country's biggest problem. We have learned how biases keep contemporary Native Americans invisible and affixed to the past — holding back Native Americans from achieving political, economic, and social equality.</p>
+      <p class="u-pq-attr">— Reclaiming Native Truth, national research project, 2018</p>
+    </div>
+  </div>
+</div>
+
+<div class="div-pattern">
+<svg viewBox="0 0 800 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="20" fill="#E8D9B8"/>
+  <g fill="#B03A1A" opacity="0.4">
+    <polygon points="0,10 5,2 10,10 5,18"/>
+    <polygon points="12,10 17,2 22,10 17,18"/>
+    <polygon points="24,10 29,2 34,10 29,18"/>
+    <polygon points="36,10 41,2 46,10 41,18"/>
+    <polygon points="48,10 53,2 58,10 53,18"/>
+    <polygon points="60,10 65,2 70,10 65,18"/>
+    <polygon points="72,10 77,2 82,10 77,18"/>
+    <polygon points="84,10 89,2 94,10 89,18"/>
+    <polygon points="96,10 101,2 106,10 101,18"/>
+    <polygon points="108,10 113,2 118,10 113,18"/>
+    <polygon points="120,10 125,2 130,10 125,18"/>
+    <polygon points="132,10 137,2 142,10 137,18"/>
+    <polygon points="144,10 149,2 154,10 149,18"/>
+    <polygon points="156,10 161,2 166,10 161,18"/>
+    <polygon points="168,10 173,2 178,10 173,18"/>
+    <polygon points="180,10 185,2 190,10 185,18"/>
+    <polygon points="192,10 197,2 202,10 197,18"/>
+    <polygon points="204,10 209,2 214,10 209,18"/>
+    <polygon points="216,10 221,2 226,10 221,18"/>
+    <polygon points="228,10 233,2 238,10 233,18"/>
+    <polygon points="240,10 245,2 250,10 245,18"/>
+    <polygon points="252,10 257,2 262,10 257,18"/>
+    <polygon points="264,10 269,2 274,10 269,18"/>
+    <polygon points="276,10 281,2 286,10 281,18"/>
+    <polygon points="288,10 293,2 298,10 293,18"/>
+    <polygon points="300,10 305,2 310,10 305,18"/>
+    <polygon points="312,10 317,2 322,10 317,18"/>
+    <polygon points="324,10 329,2 334,10 329,18"/>
+    <polygon points="336,10 341,2 346,10 341,18"/>
+    <polygon points="348,10 353,2 358,10 353,18"/>
+    <polygon points="360,10 365,2 370,10 365,18"/>
+    <polygon points="372,10 377,2 382,10 377,18"/>
+    <polygon points="384,10 389,2 394,10 389,18"/>
+    <polygon points="396,10 401,2 406,10 401,18"/>
+    <polygon points="408,10 413,2 418,10 413,18"/>
+    <polygon points="420,10 425,2 430,10 425,18"/>
+    <polygon points="432,10 437,2 442,10 437,18"/>
+    <polygon points="444,10 449,2 454,10 449,18"/>
+    <polygon points="456,10 461,2 466,10 461,18"/>
+    <polygon points="468,10 473,2 478,10 473,18"/>
+    <polygon points="480,10 485,2 490,10 485,18"/>
+    <polygon points="492,10 497,2 502,10 497,18"/>
+    <polygon points="504,10 509,2 514,10 509,18"/>
+    <polygon points="516,10 521,2 526,10 521,18"/>
+    <polygon points="528,10 533,2 538,10 533,18"/>
+    <polygon points="540,10 545,2 550,10 545,18"/>
+    <polygon points="552,10 557,2 562,10 557,18"/>
+    <polygon points="564,10 569,2 574,10 569,18"/>
+    <polygon points="576,10 581,2 586,10 581,18"/>
+    <polygon points="588,10 593,2 598,10 593,18"/>
+    <polygon points="600,10 605,2 610,10 605,18"/>
+    <polygon points="612,10 617,2 622,10 617,18"/>
+    <polygon points="624,10 629,2 634,10 629,18"/>
+    <polygon points="636,10 641,2 646,10 641,18"/>
+    <polygon points="648,10 653,2 658,10 653,18"/>
+    <polygon points="660,10 665,2 670,10 665,18"/>
+    <polygon points="672,10 677,2 682,10 677,18"/>
+    <polygon points="684,10 689,2 694,10 689,18"/>
+    <polygon points="696,10 701,2 706,10 701,18"/>
+    <polygon points="708,10 713,2 718,10 713,18"/>
+    <polygon points="720,10 725,2 730,10 725,18"/>
+    <polygon points="732,10 737,2 742,10 737,18"/>
+    <polygon points="744,10 749,2 754,10 749,18"/>
+    <polygon points="756,10 761,2 766,10 761,18"/>
+    <polygon points="768,10 773,2 778,10 773,18"/>
+    <polygon points="780,10 785,2 790,10 785,18"/>
+    <polygon points="792,10 797,2 802,10 797,18"/>
+  </g>
+</svg>
+</div>
+
+<div id="myths" class="u-sec" style="margin-top:1.5rem"><span class="u-sec-text">Five myths you probably still believe</span></div>
+<div class="u-myths-section">
+  <div class="u-myths-grid">
+    <div class="u-myth-card"><div class="u-myth-num">01</div><div class="u-myth-title">Native Americans are a people of the past</div><p class="u-myth-body">There are 574 federally recognized tribal nations in the U.S. today. Native people are alive, governing, and fighting for their rights — right now.</p></div>
+    <div class="u-myth-card"><div class="u-myth-num">02</div><div class="u-myth-title">Columbus discovered America</div><p class="u-myth-body">Tens of millions of people already lived here. Columbus initiated genocide in the Caribbean. That's not discovery — it's invasion.</p></div>
+    <div class="u-myth-card"><div class="u-myth-num">03</div><div class="u-myth-title">Thanksgiving was a friendly celebration</div><p class="u-myth-body">The "first Thanksgiving" narrative ignores the epidemic that had already emptied the region and the violent wars that followed within a single generation.</p></div>
+    <div class="u-myth-card"><div class="u-myth-num">04</div><div class="u-myth-title">Manifest Destiny was about progress</div><p class="u-myth-body">It was a racial ideology. Expanding the United States required the elimination — through removal, starvation, and massacre — of the people already there.</p></div>
+    <div class="u-myth-card"><div class="u-myth-num">05</div><div class="u-myth-title">The boarding schools were just schools</div><p class="u-myth-body">They were institutions of cultural erasure. Children were beaten for speaking their languages. Thousands died. The last one didn't close until 1978.</p></div>
+    <div class="u-myth-card" style="border-color:rgba(176,58,26,.3);background:var(--rust-soft)">
+      <div class="u-myth-num" style="color:var(--rust);opacity:1">?</div>
+      <div class="u-myth-title" style="color:var(--rust)">What else weren't you told?</div>
+      <p class="u-myth-body">This covers a fraction of what was left out. Read the sources. Keep asking questions your textbook never did.</p>
+    </div>
+  </div>
+</div>
+
+<div id="today" class="u-sec" style="margin-top:0.5rem"><span class="u-sec-text">Native Americans today — still here</span></div>
+<div class="u-today-section">
+  <div class="u-today-grid">
+    <div class="u-today-cell"><div class="u-today-head">574 sovereign nations</div><p>Federally recognized tribal governments exist across the U.S., each with their own laws and leadership. Tribes are not ethnic groups — they are <strong>governments</strong>.</p></div>
+    <div class="u-today-cell"><div class="u-today-head">Treaties still being broken</div><p>The U.S. signed hundreds of treaties with Native nations. <strong>Not a single one has been fully honored.</strong> Disputes over land, water, and sovereignty continue in federal court today.</p></div>
+    <div class="u-today-cell"><div class="u-today-head">Language and culture revival</div><p>Dozens of nations are reclaiming languages that boarding schools tried to destroy — through immersion schools, elder-led programs, and community archives.</p></div>
+    <div class="u-today-cell"><div class="u-today-head">The education gap</div><p>Native students have the <strong>lowest graduation and college enrollment rates</strong> in the country. This is the direct result of a century of dispossession, underfunding, and erasure from the curriculum.</p></div>
+  </div>
+</div>
+
+<div id="sources" class="u-sources">
+  <div class="u-sec" style="padding:0 0 0;margin-bottom:1.25rem"><span class="u-sec-text">Sources and further reading</span></div>
+  <div class="u-sources-list">
+    <div class="u-source"><div class="u-source-dot"></div><div class="u-source-text"><strong>Ronald Takaki</strong> — A Different Mirror: A History of Multicultural America</div></div>
+    <div class="u-source"><div class="u-source-dot"></div><div class="u-source-text"><strong>Roxanne Dunbar-Ortiz</strong> — An Indigenous Peoples' History of the United States</div></div>
+    <div class="u-source"><div class="u-source-dot"></div><div class="u-source-text"><strong>James Loewen</strong> — Lies My Teacher Told Me: Everything Your American History Textbook Got Wrong</div></div>
+    <div class="u-source"><div class="u-source-dot"></div><div class="u-source-text"><strong>National Congress of American Indians</strong> — 2019 State of Indian Nations Report on curriculum standards</div></div>
+    <div class="u-source"><div class="u-source-dot"></div><div class="u-source-text"><strong>U.S. Department of the Interior</strong> — Federal Indian Boarding School Initiative Investigative Report, 2022</div></div>
+    <div class="u-source"><div class="u-source-dot"></div><div class="u-source-text"><strong>Smithsonian NMAI</strong> — Native Knowledge 360°, free educational curriculum at nmai.si.edu/nk360</div></div>
+    <div class="u-source"><div class="u-source-dot"></div><div class="u-source-text"><strong>Reclaiming Native Truth</strong> — National research project on myths and misconceptions, 2018</div></div>
+  </div>
+</div>
+
+<footer class="u-footer">
+  <div class="u-footer-brand">UN<span>TAUGHT</span></div>
+  <div class="u-footer-note">Based primarily on Ronald Takaki's <em>A Different Mirror</em> and related scholarship. A public education project for students who went through the American K-12 system.</div>
+</footer>
+
+</div>
+
+<script>
+function tog(h){
+  const b=h.nextElementSibling,a=h.querySelector('.u-era-arrow'),o=b.classList.contains('vis');
+  b.classList.toggle('vis',!o);a.classList.toggle('open',!o);
+}
+</script>
